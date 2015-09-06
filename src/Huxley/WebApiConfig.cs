@@ -23,15 +23,15 @@ using System.Web.Http;
 namespace Huxley {
     public static class WebApiConfig {
         public static void Register(HttpConfiguration config) {
-            config.Routes.MapHttpRoute("CrsCodesApi", "crs/{query}", new { controller = "Crs", query = RouteParameter.Optional });
-            config.Routes.MapHttpRoute("ServiceDetailsApi", "service/{*serviceid}", new { controller = "Service" });
-            config.Routes.MapHttpRoute("StationDelaysApi", "delays/{crs}/{filtertype}/{filtercrs}/{numrows}/{std}",
+            config.Routes.MapHttpRoute("CrsCodesApi", "api/crs/{query}", new { controller = "Crs", query = RouteParameter.Optional });
+            config.Routes.MapHttpRoute("ServiceDetailsApi", "api/service/{*serviceid}", new { controller = "Service" });
+            config.Routes.MapHttpRoute("StationDelaysApi", "api/delays/{crs}/{filtertype}/{filtercrs}/{numrows}/{std}",
                 new {
                     controller = "Delays",
                     std = RouteParameter.Optional,
                 });
-            config.Routes.MapHttpRoute("StationBoardApiSimple", "{board}/{crs}/{numrows}", new { controller = "Station" });
-            config.Routes.MapHttpRoute("StationBoardApi", "{board}/{crs}/{filtertype}/{filtercrs}/{numrows}",
+            config.Routes.MapHttpRoute("StationBoardApiSimple", "api/{board}/{crs}/{numrows}", new { controller = "Station" });
+            config.Routes.MapHttpRoute("StationBoardApi", "api/{board}/{crs}/{filtertype}/{filtercrs}/{numrows}",
                 new {
                     controller = "Station",
                     filtertype = RouteParameter.Optional,
