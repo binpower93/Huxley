@@ -38,7 +38,15 @@ namespace Huxley.Controllers {
                 request.ServiceId = Convert.ToBase64String(sid.ToByteArray());
             }
             var token = MakeAccessToken(request.AccessToken);
-            var service = await Client.GetServiceDetailsAsync(token, request.ServiceId);
+            var serviceId = request.ServiceId;
+            if (serviceId.Length < 24)
+            {
+                for (int i = 0; i < (24 - serviceId.Length); i++)
+                {
+                    serviceId = "/" + serviceId;
+                }
+            }
+            var service = await Client.GetServiceDetailsAsync(token, serviceId);
             return service.GetServiceDetailsResult;
         }
     }
